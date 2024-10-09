@@ -102,7 +102,6 @@ class SalesController extends Controller
             ]);
         }
 
-
         return response()->json(['message' => 'Sales report created successfully'], 201);
     }
 }
