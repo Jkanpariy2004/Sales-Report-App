@@ -1,0 +1,277 @@
+Date:16/09/2024
+1.Tasks Completed:
+ ->Knowledge about Git and Github.
+ ->Apply validation to all forms on the frontend side, and convert the API calls to use the call method.
+ ->Send Mail Functionality Add on News App.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+
+Date:18/09/2024
+1.Tasks Completed:
+ ->Create Project Task-Management-System.
+ ->Add Functionality Create User with Mail Send And crud Operation In Task-Management-System.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->Mail Send To Set Url To Password Change.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:19/09/2024
+1.Tasks Completed:
+ ->Craete Company Funcationality With Crud Operation in Task Management System.
+ ->Create Task Funcationality & User Task Assign Funcationality in Task Management System.
+ ->Create User Login And User Dashboard Page in Task Management system.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:20/09/2024
+1.Tasks Completed:
+ ->User Assign Task Show In Card And Apply All Condition In User Task Details.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->Apply Condition To Show User Task Data.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:21/09/2024
+1.Tasks Completed:
+ ->Assign Task Add Attechments in Task Management System.
+ ->Task Details Show Add Comment Admin & User Side.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->Send And Show Comment User & Admin Side.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:22/09/2024
+1.Tasks Completed:
+ ->Error Solve In Comment User & Admin Side In Task Management System.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->Send And Show Comment User & Admin Side.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:25/09/2024
+1.Tasks Completed:
+ ->Knowledge about CPanel.
+ ->Knowledge about How To Upload Project On CPanel.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:26/09/2024
+1.Tasks Completed:
+ ->Error Solve In Comment User & Admin Side In Task Management System.
+ ->Send Whatsapp Message Using Twilio.
+ ->Send Text Message Using Twilio.
+ ->Mail Send Using Markdown Method.
+ ->Pdf Generate & Send In Mail.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:27/09/2024
+1.Tasks Completed:
+ ->OTP Login Using Twilio.(OTP Send In mobile on text Message)
+ ->payment Gateway integrate.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:28/09/2024
+1.Tasks Completed:
+ ->Wallet Create using Rezorpay Payment Gateway.
+
+2.Ongoing Tasks:
+ ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:30/09/2024
+1.Tasks Completed:
+ ->middleware login check.
+ ->login using auth.
+ ->css change in all file.
+ ->script add end of the code in all file.
+ ->blade file re order.
+ ->custome middleware.
+ ->datatable call in ajax.
+ ->route grouping & prefix.
+ ->relationship in model.
+    ->all chnages in Task Management System.
+
+2.Ongoing Tasks:
+ ->constsnt file declare.
+ ->role permission.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:01/10/2024
+1.Tasks Completed:
+ ->Admin Role Permission in Task Management System.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->Apply Role Permission to Admin.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:02/10/2024
+1.Tasks Completed:
+ ->Admin Role Permission Solve Error in Task Management System.
+ ->Login using Brezee.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->Apply Role Permission to Admin.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:03/10/2024
+1.Tasks Completed:
+ ->admin login method change to apply brezee package install and apply admin login.
+ ->data table error solve in Task Management System.
+ ->csv file import & export in database.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:04/10/2024
+1.Tasks Completed:
+ ->landing page Created in html,css,bootstrap half Page Complete.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:04/10/2024
+1.Tasks Completed:
+ ->Skinclub landing Page Complete.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:07/10/2024
+1.Tasks Completed:
+ ->Skinclub Page Other Design Changes.
+ ->login using Google Account.
+ ->login using Facebook Account.
+ ->login using Twitter Account.
+ ->login using Github Account.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:08/10/2024
+1.Tasks Completed:
+ ->Knowledge About Tailwind CSS.
+ ->Notification Send in mail using Que And Job.
+ ->data base Notification send in User Dashboard.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:09/10/2024
+1.Tasks Completed:
+ ->Customers Module Crud Operation in Sales Report.
+ ->Create Form Design For Sales Report.
+
+2.Ongoing Tasks:
+  ->Apply Backend in Sales Report.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
