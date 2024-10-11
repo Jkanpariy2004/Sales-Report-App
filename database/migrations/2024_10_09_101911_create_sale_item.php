@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('hsn_code',50);
             $table->string('tax_type',50);
             $table->string('tax',50);
-            $table->string('totle',50);
+            $table->string('total',50);
             $table->timestamps();
         });
     }

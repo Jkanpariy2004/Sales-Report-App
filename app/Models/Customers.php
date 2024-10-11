@@ -20,4 +20,10 @@ class Customers extends Model
         'transport_gst_tin_no',
         'parcel',
     ];
+
+    public function sales()
+    {
+        return $this->hasMany(Sales::class, 'customer_id');
+    }
+
 }

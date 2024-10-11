@@ -275,3 +275,31 @@ Date:09/10/2024
 
 4.Next Steps/Plan for Tomorrow:
  ->
+
+Date:10/10/2024
+1.Tasks Completed:
+ ->Apply crud Opration in Sales Report.
+
+2.Ongoing Tasks:
+  ->Create Invoice in Sales Report.
+
+3.Challenges Faced:
+ ->Sales Report Update Sales Item Data.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
+
+Date:11/10/2024
+1.Tasks Completed:
+ ->Create Invoice in Sales Report.
+ ->Print Invoice.
+ ->Invoice Send In Customer Email in PDF.
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->

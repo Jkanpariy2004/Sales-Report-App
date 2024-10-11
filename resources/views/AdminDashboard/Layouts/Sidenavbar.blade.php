@@ -40,10 +40,16 @@
                 <div data-i18n="Customer">Customer</div>
             </a>
         </li>
-        <li class="menu-item {{ Request::is('admin/sales','admin/sales/add') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('admin/sales','admin/sales/add','admin/sales/edit/*') ? 'active' : '' }}">
             <a href="{{ route('admin.sales') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-id"></i>
                 <div data-i18n="Sales">Sales</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('admin/cache') ? 'active' : '' }}">
+            <a href="{{ route('cache') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-settings"></i>
+                <div data-i18n="Cache">Cache</div>
             </a>
         </li>
     </ul>

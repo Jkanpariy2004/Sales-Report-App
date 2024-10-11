@@ -21,43 +21,54 @@
 
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <!-- Sales last year -->
                             <div class="col-xl-2 col-md-4 col-6 mb-4">
                                 <div class="card">
                                     <div class="card-header pb-0">
-                                        <h5 class="card-title mb-0">Sales</h5>
-                                        <small class="text-muted">Last Year</small>
+                                        <h3 class="card-title mb-0">Customers</h3>
                                     </div>
                                     <div id="salesLastYear"></div>
                                     <div class="card-body pt-0">
                                         <div class="d-flex justify-content-between align-items-center mt-3 gap-3">
-                                            <h4 class="mb-0">175k</h4>
-                                            <small class="text-danger">-16.2%</small>
+                                            <h4 class="mb-0 text-primary" id="customerCount">{{ $Customer }}</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Sessions Last month -->
                             <div class="col-xl-2 col-md-4 col-6 mb-4">
                                 <div class="card">
                                     <div class="card-header pb-0">
-                                        <h5 class="card-title mb-0">Sessions</h5>
-                                        <small class="text-muted">Last Month</small>
+                                        <h3 class="card-title mb-0">Bills</h3>
                                     </div>
                                     <div class="card-body">
                                         <div id="sessionsLastMonth"></div>
                                         <div class="d-flex justify-content-between align-items-center mt-3 gap-3">
-                                            <h4 class="mb-0">45.1k</h4>
-                                            <small class="text-success">+12.6%</small>
+                                            <h4 class="mb-0 text-primary" id="billCount">{{ $Bill }}</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    <!-- / Content -->
+                    <script>
+                        function animateCount(element, start, end, duration) {
+                            let startTimestamp = null;
+                            const step = (timestamp) => {
+                                if (!startTimestamp) startTimestamp = timestamp;
+                                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                                element.innerText = Math.floor(progress * (end - start) + start);
+                                if (progress < 1) {
+                                    window.requestAnimationFrame(step);
+                                }
+                            };
+                            window.requestAnimationFrame(step);
+                        }
+
+                        document.addEventListener('DOMContentLoaded', () => {
+                            animateCount(document.getElementById('customerCount'), 0, {{ $Customer }}, 2000);
+                            animateCount(document.getElementById('billCount'), 0, {{ $Bill }}, 2000);
+                        });
+                    </script>
 
                     @include('AdminDashboard.Layouts.footer')
 

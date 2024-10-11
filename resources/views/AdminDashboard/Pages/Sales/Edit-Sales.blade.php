@@ -29,13 +29,16 @@
                                                     <label for="customer" class="form-label">Select Customer</label>
                                                     <div class="dropdown">
                                                         <input type="text" id="customerSearch" class="form-control"
-                                                            placeholder="Search Customer" onkeyup="filterCustomers()">
+                                                            placeholder="Search Customer" onkeyup="filterCustomers()"
+                                                            value="{{ $new->customer_id ? $customers->firstWhere('id', $new->customer_id)->customer_name : '' }}">
                                                         <select class="form-select" id="customer" name="customer"
                                                             size="5" onchange="fetchCustomerDetails()">
                                                             <option value="" hidden>Select Customer</option>
                                                             @foreach ($customers as $customer)
-                                                                <option value="{{ $customer->id }}">
-                                                                    {{ $customer->customer_name }}</option>
+                                                                <option value="{{ $customer->id }}"
+                                                                    {{ $new->customer_id == $customer->id ? 'selected' : '' }}>
+                                                                    {{ $customer->customer_name }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                         <div class="invalid-feedback" id="customer-error"></div>
@@ -48,7 +51,7 @@
                                                 <div class="mb-3">
                                                     <label for="bill_no" class="form-label">Bill No.</label>
                                                     <input type="text" class="form-control" name="bill_no" id="bill_no"
-                                                        placeholder="Enter Bill No." />
+                                                        placeholder="Enter Bill No." value="{{ $new->bill_no }}" />
                                                     <div class="invalid-feedback" id="bill_no-error"></div>
                                                 </div>
                                             </div>
@@ -56,7 +59,8 @@
                                                 <div class="mb-3">
                                                     <label for="bill_date" class="form-label">Bill Date</label>
                                                     <input type="text" class="form-control" name="bill_date"
-                                                        id="bill_date" placeholder="Select Bill Date" id="bill_date" />
+                                                        id="bill_date" placeholder="Select Bill Date" id="bill_date"
+                                                        value="{{ $new->bill_date }}" />
                                                     <div class="invalid-feedback" id="bill_date-error"></div>
                                                 </div>
                                             </div>
@@ -67,14 +71,14 @@
                                                 <div class="mb-3">
                                                     <label for="gst_no" class="form-label">GST No.</label>
                                                     <input type="text" class="form-control" name="gst_no" id="gst_no"
-                                                        placeholder="Enter GST No." />
+                                                        placeholder="Enter GST No." value="{{ $new->gst_no }}" />
                                                     <div class="invalid-feedback" id="gst_no-error"></div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="mb-3">
                                                     <label for="place" class="form-label">Place</label>
-                                                    <textarea type="text" class="form-control" name="place" id="place" placeholder="Enter Place"></textarea>
+                                                    <textarea type="text" class="form-control" name="place" id="place" placeholder="Enter Place">{{ $new->place }}</textarea>
                                                     <div class="invalid-feedback" id="place-error"></div>
                                                 </div>
                                             </div>
@@ -85,7 +89,8 @@
                                                 <div class="mb-3">
                                                     <label for="state_code" class="form-label">State Code</label>
                                                     <input type="text" class="form-control" name="state_code"
-                                                        id="state_code" placeholder="Enter State Code" />
+                                                        id="state_code" placeholder="Enter State Code"
+                                                        value="{{ $new->state_code }}" />
                                                     <div class="invalid-feedback" id="state_code-error"></div>
                                                 </div>
                                             </div>
@@ -93,7 +98,8 @@
                                                 <div class="mb-3">
                                                     <label for="transport_no" class="form-label">Transport No.</label>
                                                     <input type="text" class="form-control" name="transport_no"
-                                                        id="transport_no" placeholder="Enter Transport No." />
+                                                        id="transport_no" placeholder="Enter Transport No."
+                                                        value="{{ $new->transport_no }}" />
                                                     <div class="invalid-feedback" id="transport_no-error"></div>
                                                 </div>
                                             </div>
@@ -106,7 +112,8 @@
                                                         No.</label>
                                                     <input type="text" class="form-control"
                                                         name="transport_gst_tin_no" id="transport_gst_tin_no"
-                                                        placeholder="Enter Transport GST TIN No." />
+                                                        placeholder="Enter Transport GST TIN No."
+                                                        value="{{ $new->transport_gst_tin_no }}" />
                                                     <div class="invalid-feedback" id="transport_gst_tin_no-error"></div>
                                                 </div>
                                             </div>
@@ -114,7 +121,8 @@
                                                 <div class="mb-3">
                                                     <label for="parcel" class="form-label">Parcel</label>
                                                     <input type="text" class="form-control" name="parcel"
-                                                        id="parcel" placeholder="Enter Parcel" />
+                                                        id="parcel" placeholder="Enter Parcel"
+                                                        value="{{ $new->parcel }}" />
                                                     <div class="invalid-feedback" id="parcel-error"></div>
                                                 </div>
                                             </div>
@@ -139,7 +147,106 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach ($SalesItems as $SalesItem)
+                                                            <tr data-id="{{ $SalesItem->id }}" class="sales-item-row">
+                                                                <td>
+                                                                    <span class="view-mode">{{ $SalesItem->unit }}</span>
+                                                                    <select class="form-select edit-mode" name="unit"
+                                                                        style="display:none;">
+                                                                        <option value="" hidden>Select Unit</option>
+                                                                        <option value="P"
+                                                                            {{ $SalesItem->unit == 'P' ? 'selected' : '' }}>
+                                                                            P</option>
+                                                                        <option value="M"
+                                                                            {{ $SalesItem->unit == 'M' ? 'selected' : '' }}>
+                                                                            M</option>
+                                                                        <option value="K"
+                                                                            {{ $SalesItem->unit == 'K' ? 'selected' : '' }}>
+                                                                            K</option>
+                                                                        <option value="G"
+                                                                            {{ $SalesItem->unit == 'G' ? 'selected' : '' }}>
+                                                                            G</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        class="view-mode">{{ $SalesItem->quantity }}</span>
+                                                                    <input type="number" class="form-control edit-mode"
+                                                                        name="quantity"
+                                                                        value="{{ $SalesItem->quantity }}"
+                                                                        style="display:none;" />
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        class="view-mode">{{ $SalesItem->item_name }}</span>
+                                                                    <input type="text" class="form-control edit-mode"
+                                                                        name="item_name"
+                                                                        value="{{ $SalesItem->item_name }}"
+                                                                        style="display:none;" />
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        class="view-mode">{{ $SalesItem->item_detail }}</span>
+                                                                    <input type="text" class="form-control edit-mode"
+                                                                        name="item_detail"
+                                                                        value="{{ $SalesItem->item_detail }}"
+                                                                        style="display:none;" />
+                                                                </td>
+                                                                <td>
+                                                                    <span class="view-mode">{{ $SalesItem->price }}</span>
+                                                                    <input type="number" class="form-control edit-mode"
+                                                                        name="price" value="{{ $SalesItem->price }}"
+                                                                        style="display:none;" />
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        class="view-mode">{{ $SalesItem->hsn_code }}</span>
+                                                                    <input type="text" class="form-control edit-mode"
+                                                                        name="hsn_code"
+                                                                        value="{{ $SalesItem->hsn_code }}"
+                                                                        style="display:none;" />
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        class="view-mode">{{ $SalesItem->tax_type }}</span>
+                                                                    <select class="form-select edit-mode" name="tax_type"
+                                                                        style="display:none;">
+                                                                        <option value="" hidden>Select Tax Type
+                                                                        </option>
+                                                                        <option value="CGST/SGST"
+                                                                            {{ $SalesItem->tax_type == 'CGST/SGST' ? 'selected' : '' }}>
+                                                                            CGST/SGST
+                                                                        </option>
+                                                                        <option value="IGST"
+                                                                            {{ $SalesItem->tax_type == 'IGST' ? 'selected' : '' }}>
+                                                                            IGST</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="view-mode">{{ $SalesItem->tax }}</span>
+                                                                    <input type="number" class="form-control edit-mode"
+                                                                        name="tax" value="{{ $SalesItem->tax }}"
+                                                                        style="display:none;" />
+                                                                </td>
+                                                                <td>
+                                                                    <span class="view-mode">{{ $SalesItem->total }}</span>
+                                                                    <input type="number" class="form-control edit-mode"
+                                                                        name="total" value="{{ $SalesItem->total }}"
+                                                                        id="OldTotal" style="display:none;"
+                                                                        onchange="calculateGrandTotal()" />
+                                                                </td>
+                                                                <td class="action-buttons">
+                                                                    <a href="javascript:void(0);" class="edit-item"
+                                                                        onclick="toggleEdit(this)">
+                                                                        <i class="text-primary ti ti-pencil"></i>
+                                                                    </a>
+                                                                    <a href="javascript:void(0)"
+                                                                        onclick="confirmDelete({{ $SalesItem->id }})">
+                                                                        <i class="text-danger ti ti-trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
@@ -155,11 +262,12 @@
                                                         </tr>
                                                     </tfoot>
                                                 </table>
+
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <button type="submit" class="btn btn-primary">Add Sales</button>
+                                            <button type="submit" class="btn btn-primary">Update Sales Report</button>
                                         </div>
                                     </form>
                                 </div>
@@ -179,9 +287,142 @@
         <div class="drag-target"></div>
     </div>
 
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
+        function confirmDelete(SalesItemId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/sales/delete-sales-item/' + SalesItemId,
+                        type: 'DELETE',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The sales item has been deleted.',
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire(
+                                'Error!',
+                                'There was a problem deleting the sales item.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
+
+        function toggleEdit(element) {
+            const row = element.closest('tr');
+            const units = row.querySelectorAll('.view-mode');
+            const edits = row.querySelectorAll('.edit-mode');
+            const actionButtons = row.querySelector('.action-buttons');
+
+            units.forEach((unit, index) => {
+                unit.style.display = unit.style.display === 'none' ? 'inline' : 'none';
+                edits[index].style.display = edits[index].style.display === 'none' ? 'inline' : 'none';
+            });
+
+            actionButtons.innerHTML = `
+                <button class="btn btn-success save-item" onclick="saveItem(${row.dataset.id}, this)">Save</button>
+            `;
+
+            calculateRowTotal(row);
+        }
+
+        function saveItem(id, element) {
+            const row = element.closest('tr');
+            const data = {
+                unit: row.querySelector('select[name="unit"]').value,
+                quantity: row.querySelector('input[name="quantity"]').value,
+                item_name: row.querySelector('input[name="item_name"]').value,
+                item_detail: row.querySelector('input[name="item_detail"]').value,
+                price: row.querySelector('input[name="price"]').value,
+                hsn_code: row.querySelector('input[name="hsn_code"]').value,
+                tax_type: row.querySelector('select[name="tax_type"]').value,
+                tax: row.querySelector('input[name="tax"]').value,
+                total: row.querySelector('input[name="total"]').value,
+                _token: '{{ csrf_token() }}'
+            };
+
+            $.ajax({
+                url: '/admin/sales/update-sales-item/' + id,
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Item updated successfully.',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    let errorMessage = xhr.responseJSON?.message || 'Something went wrong. Please try again.';
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: errorMessage,
+                        confirmButtonText: 'OK'
+                    });
+                }
+
+            });
+        }
+
+        function calculateRowTotal(row) {
+            const price = parseFloat(row.querySelector('input[name="price"]').value) || 0;
+            const quantity = parseFloat(row.querySelector('input[name="quantity"]').value) || 0;
+            const tax = parseFloat(row.querySelector('input[name="tax"]').value) || 0;
+
+            const total = (price * quantity) + ((price * quantity) * (tax / 100));
+
+            row.querySelector('input[name="total"]').value = total.toFixed(2);
+
+            calculateGrandTotal();
+        }
+
+        function calculateGrandTotal() {
+            let grandTotal = 0;
+            document.querySelectorAll('input[name="total"]').forEach(function(input) {
+                const total = parseFloat(input.value) || 0;
+                grandTotal += total;
+            });
+            document.getElementById('grandTotal').value = grandTotal.toFixed(2);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateGrandTotal();
+
+            document.querySelectorAll('input[name="price"], input[name="quantity"], input[name="tax"]')
+                .forEach(function(input) {
+                    input.addEventListener('input', function() {
+                        const row = input.closest('tr');
+                        calculateRowTotal(row);
+                    });
+                });
+        });
+
         function filterCustomers() {
             const input = document.getElementById('customerSearch').value.toLowerCase();
             const dropdown = document.getElementById('customer');
@@ -209,28 +450,16 @@
                 $('#' + $(this).attr('id') + '-error').text('');
             });
 
-            addRow();
-
             $('#SalesForm').on('submit', function(e) {
                 e.preventDefault();
 
                 var isValid = true;
 
-                $('#salesReportTable tbody tr').each(function() {
-                    var quantity = $(this).find('input[name="quantity[]"]').val();
-                    var price = $(this).find('input[name="price[]"]').val();
-                    if (!quantity || !price) {
-                        isValid = false;
-                        $(this).find('input[name="quantity[]"], input[name="price[]"]').addClass(
-                            'is-invalid');
-                    }
-                });
-
                 if (isValid) {
                     var formData = new FormData(this);
 
                     $.ajax({
-                        url: '{{ route('insert.sales') }}',
+                        url: '{{ route('update.sales', $new->id) }}',
                         type: 'POST',
                         data: formData,
                         processData: false,
@@ -270,7 +499,8 @@
 
                 $('#salesReportTable tbody tr').each(function() {
                     let rowTotal = parseFloat($(this).find('input[name="total[]"]').val()) || 0;
-                    grandTotal += rowTotal;
+                    let OldTotal = parseFloat($(this).find('input[id="OldTotal"]').val()) || 0;
+                    grandTotal = rowTotal + grandTotal + OldTotal;
                 });
 
                 $('#grandTotal').val(grandTotal.toFixed(2));

@@ -23,4 +23,9 @@ class Sales_Items extends Model
         'tax',
         'total'
     ];
+
+    public function sale()
+    {
+        return $this->belongsTo(Sales::class, 'sale_id');
+    }
 }

@@ -28,6 +28,7 @@ class CustomersController extends Controller
     public function insert(Request $request){
         $validator = Validator::make($request->all(), [
             'customer_name' => 'required',
+            'customer_email' => 'required',
             'gst_no' => 'required',
             'place' => 'required',
             'state_code' => 'required',
@@ -42,6 +43,7 @@ class CustomersController extends Controller
 
         $admin = new Customers();
         $admin->customer_name = $request->customer_name;
+        $admin->customer_email = $request->customer_email;
         $admin->gst_no = $request->gst_no;
         $admin->place = $request->place;
         $admin->state_code = $request->state_code;
@@ -65,6 +67,7 @@ class CustomersController extends Controller
     public function update(Request $request, $id){
         $validator = Validator::make($request->all(), [
             'customer_name' => 'required',
+            'customer_email' => 'required',
             'gst_no' => 'required',
             'place' => 'required',
             'state_code' => 'required',
@@ -79,6 +82,7 @@ class CustomersController extends Controller
 
         $admin = Customers::find($id);
         $admin->customer_name = $request->customer_name;
+        $admin->customer_email = $request->customer_email;  
         $admin->gst_no = $request->gst_no;
         $admin->place = $request->place;
         $admin->state_code = $request->state_code;

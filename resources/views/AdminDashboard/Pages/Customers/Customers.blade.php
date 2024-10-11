@@ -38,6 +38,7 @@
                                             <tr>
                                                 <th class="text-center">No.</th>
                                                 <th class="text-center">Customer Name</th>
+                                                <th class="text-center">Customer Email</th>
                                                 <th class="text-center">GST No.</th>
                                                 <th class="text-center">Place</th>
                                                 <th class="text-center">State Code</th>
@@ -86,6 +87,9 @@
                                                         },
                                                         {
                                                             data: "customer_name"
+                                                        },
+                                                        {
+                                                            data: "customer_email"
                                                         },
                                                         {
                                                             data: "gst_no"

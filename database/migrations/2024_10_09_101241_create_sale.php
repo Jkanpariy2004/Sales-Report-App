@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('transport_no',50);
             $table->string('transport_gst_tin_no',50);
             $table->string('parcel',50);
+            $table->string('grand_total',50);
             $table->timestamps();
         });
     }

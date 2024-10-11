@@ -33,15 +33,23 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="mb-3">
+                                                    <label for="customer_email" class="form-label">Customer Email</label>
+                                                    <input type="text" class="form-control" name="customer_email" id="customer_email"
+                                                        placeholder="Enter Customer Name" />
+                                                    <div class="invalid-feedback" id="customer_email-error"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
                                                     <label for="gst_no" class="form-label">GST No.</label>
                                                     <input type="text" class="form-control" name="gst_no" id="gst_no"
                                                         placeholder="Enter GST No." />
                                                     <div class="invalid-feedback" id="gst_no-error"></div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
                                             <div class="col-6">
                                                 <div class="mb-3">
                                                     <label for="place" class="form-label">Place</label>
@@ -50,6 +58,9 @@
                                                     <div class="invalid-feedback" id="place-error"></div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-6">
                                                 <div class="mb-3">
                                                     <label for="state_code" class="form-label">State Code</label>
@@ -58,9 +69,6 @@
                                                     <div class="invalid-feedback" id="state_code-error"></div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
                                             <div class="col-6">
                                                 <div class="mb-3">
                                                     <label for="transport_no" class="form-label">Transport No.</label>
@@ -69,6 +77,9 @@
                                                     <div class="invalid-feedback" id="transport_no-error"></div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-6">
                                                 <div class="mb-3">
                                                     <label for="transport_gst_tin_no" class="form-label">Transport GST TIN No.</label>
@@ -76,9 +87,6 @@
                                                     <div class="invalid-feedback" id="transport_gst_tin_no-error"></div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
                                             <div class="col-6">
                                                 <div class="mb-3">
                                                     <label for="parcel" class="form-label">Parcel</label>
@@ -128,6 +136,13 @@
                 if (customer_name.trim() === '') {
                     $('#customer_name').addClass('is-invalid');
                     $('#customer_name-error').text('Customer Name is required');
+                    isValid = false;
+                }
+
+                var customer_email = $('#customer_email').val();
+                if (customer_email.trim() === '') {
+                    $('#customer_email').addClass('is-invalid');
+                    $('#customer_email-error').text('Customer Email is required');
                     isValid = false;
                 }
 

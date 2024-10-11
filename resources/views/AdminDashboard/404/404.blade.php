@@ -64,7 +64,7 @@
 <body>
     <div class="container">
         <div class="error-icon">
-            <img src="assets/img/404-error.webp" alt="404 Poster">
+            <img src="/assets/img/404-error.webp" alt="404 Poster">
         </div>
         <h1>Oops! Page Not Found</h1>
         <p>The page you're looking for doesn't exist.</p>
