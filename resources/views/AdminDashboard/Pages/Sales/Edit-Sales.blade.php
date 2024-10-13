@@ -345,61 +345,10 @@
             });
 
             actionButtons.innerHTML = `
-                <button class="btn btn-success save-item" onclick="saveItem(${row.dataset.id}, this)">Save</button>
+                <button class="btn btn-success save-item">Save</button>
             `;
 
             calculateRowTotal(row);
-        }
-
-        function saveItem(id, element) {
-            const row = element.closest('tr');
-            const data = {
-                unit: row.querySelector('select[name="unit"]') ? row.querySelector('select[name="unit"]').value : '',
-                quantity: row.querySelector('input[name="quantity"]') ? row.querySelector('input[name="quantity"]')
-                    .value : '',
-                item_name: row.querySelector('select[name="item_name"]') ? row.querySelector('select[name="item_name"]')
-                    .value : '',
-                item_detail: row.querySelector('input[name="item_detail"]') ? row.querySelector(
-                    'input[name="item_detail"]').value : '',
-                price: row.querySelector('input[name="price"]') ? row.querySelector('input[name="price"]').value : '',
-                hsn_code: row.querySelector('input[name="hsn_code"]') ? row.querySelector('input[name="hsn_code"]')
-                    .value : '',
-                tax_type: row.querySelector('select[name="tax_type"]') ? row.querySelector('select[name="tax_type"]')
-                    .value : '',
-                tax: row.querySelector('input[name="tax"]') ? row.querySelector('input[name="tax"]').value : '',
-                total: row.querySelector('input[name="total"]') ? row.querySelector('input[name="total"]').value : '',
-                _token: '{{ csrf_token() }}'
-            };
-
-
-            $.ajax({
-                url: '/admin/sales/update-sales-item/' + id,
-                method: 'POST',
-                data: data,
-                success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Item updated successfully.',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload();
-                        }
-                    });
-                },
-                error: function(xhr, status, error) {
-                    let errorMessage = xhr.responseJSON?.message || 'Something went wrong. Please try again.';
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: errorMessage,
-                        confirmButtonText: 'OK'
-                    });
-                }
-
-            });
         }
 
         function calculateRowTotal(row) {
@@ -463,7 +412,7 @@
             });
 
             $('#SalesForm').on('submit', function(e) {
-                // console.log('ccc');
+                // Prevent the sales form from submitting
                 e.preventDefault();
 
                 var isValid = true;
@@ -485,6 +434,8 @@
                                 timer: 3000,
                                 timerProgressBar: true,
                                 confirmButtonText: 'OK'
+                            }).then(function() {
+                                window.location.href = '{{ route('admin.sales') }}';
                             });
                         },
                         error: function(xhr) {
@@ -499,6 +450,66 @@
                         }
                     });
                 }
+            });
+
+            $('#salesReportTable').on('click', '.save-item', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const button = $(this);
+                const row = button.closest('tr');
+                const id = row.data('id');
+
+                if (button.prop('disabled')) {
+                    return;
+                }
+
+                button.prop('disabled', true);
+
+                const data = {
+                    unit: row.find('select[name="unit"]').val(),
+                    quantity: row.find('input[name="quantity"]').val(),
+                    item_name: row.find('select[name="item_name"]').val(),
+                    item_detail: row.find('input[name="item_detail"]').val(),
+                    price: row.find('input[name="price"]').val(),
+                    hsn_code: row.find('input[name="hsn_code"]').val(),
+                    tax_type: row.find('select[name="tax_type"]').val(),
+                    tax: row.find('input[name="tax"]').val(),
+                    total: row.find('input[name="total"]').val(),
+                    _token: '{{ csrf_token() }}'
+                };
+
+                $.ajax({
+                    url: '/admin/sales/update-sales-item/' + id,
+                    method: 'POST',
+                    data: data,
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Item updated successfully.',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        let errorMessage = xhr.responseJSON?.message ||
+                            'Something went wrong. Please try again.';
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: errorMessage,
+                            confirmButtonText: 'OK'
+                        });
+                    },
+                    complete: function() {
+                        // Optionally, you can re-enable the button here if you want to allow further edits
+                        // button.prop('disabled', false);
+                    }
+                });
             });
 
             flatpickr("#bill_date", {
