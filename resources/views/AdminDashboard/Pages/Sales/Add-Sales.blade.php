@@ -123,38 +123,40 @@
                                         <div class="col-md-12">
                                             <div class="card mb-4">
                                                 <h5 class="card-header">Sales Items</h5>
-                                                <table class="table table-bordered" id="salesReportTable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Unit</th>
-                                                            <th>Quantity</th>
-                                                            <th>Item Name</th>
-                                                            <th>Item Details</th>
-                                                            <th>Price</th>
-                                                            <th>HSN Code</th>
-                                                            <th>Tax Type</th>
-                                                            <th>Tax(%)</th>
-                                                            <th>Total</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
+                                                <div style="overflow-x: auto">
+                                                    <table class="table table-bordered" id="salesReportTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Unit</th>
+                                                                <th>Quantity</th>
+                                                                <th>Item Name</th>
+                                                                <th>Item Details</th>
+                                                                <th>Price</th>
+                                                                <th>HSN Code</th>
+                                                                <th>Tax Type</th>
+                                                                <th>Tax(%)</th>
+                                                                <th>Total</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
 
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="7" class="text-end">Grand Total:</td>
-                                                            <td colspan="2">
-                                                                <input type="number" class="form-control"
-                                                                    id="grandTotal" name="grandTotal" readonly />
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" id="addRow"
-                                                                    class="btn btn-primary">Add</button>
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="7" class="text-end">Grand Total:</td>
+                                                                <td colspan="2">
+                                                                    <input type="number" class="form-control"
+                                                                        id="grandTotal" name="grandTotal" readonly />
+                                                                </td>
+                                                                <td>
+                                                                    <button type="button" id="addRow"
+                                                                        class="btn btn-primary">Add</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -312,7 +314,14 @@
                             </select>
                         </td>
                         <td><input type="number" class="form-control" name="quantity[]" placeholder="Enter Quantity"></td>
-                        <td><input type="text" class="form-control" name="item_name[]" placeholder="Enter Item Name"></td>
+                        <td>
+                            <select class="form-select" name="item_name[]">
+                                <option value="" hidden>Select Item</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->product_name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
                         <td><input type="text" class="form-control" name="item_details[]" placeholder="Enter Item Details"></td>
                         <td><input type="number" class="form-control" name="price[]" placeholder="Enter Item Price"></td>
                         <td><input type="text" class="form-control" name="hsn_code[]" placeholder="Enter Item HSN Code"></td>

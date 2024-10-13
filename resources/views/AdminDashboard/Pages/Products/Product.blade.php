@@ -1,6 +1,6 @@
 @extends('AdminDashboard.Particals.app')
 
-@section('title', 'Customer Page')
+@section('title', 'Product Page')
 
 @section('content')
     <div class="layout-wrapper layout-content-navbar">
@@ -16,19 +16,19 @@
 
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="container-xxl flex-grow-1 container-p-y">
-                            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Customers
+                            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Products
                             </h4>
 
                             <div class="card p-4">
                                 <div class="d-flex mb-3">
                                     <div class="w-50 text-start">
-                                        <h3>Customers Data</h3>
+                                        <h3>Products Data</h3>
                                     </div>
 
                                     <div class="w-50 text-end">
-                                        <a href="{{ route('admin.add.customers') }}" class="btn btn-primary">
+                                        <a href="{{ route('admin.add.products') }}" class="btn btn-primary">
                                             <i class="ti ti-plus me-sm-1"></i>
-                                            <span class="mt-1">Add Customers</span>
+                                            <span class="mt-1">Add Products</span>
                                         </a>
                                     </div>
                                 </div>
@@ -37,14 +37,10 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No.</th>
-                                                <th class="text-center">Customer Name</th>
-                                                <th class="text-center">Customer Email</th>
-                                                <th class="text-center">GST No.</th>
-                                                <th class="text-center">Place</th>
-                                                <th class="text-center">State Code</th>
-                                                <th class="text-center">Transport No.</th>
-                                                <th class="text-center">Transport GST TIN No.</th>
-                                                <th class="text-center">Parcel</th>
+                                                <th class="text-center">Product Name</th>
+                                                <th class="text-center">Product SKU</th>
+                                                <th class="text-center">Product Price</th>
+                                                <th class="text-center">Product Stock</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -78,42 +74,30 @@
                                                 $('#example').DataTable({
                                                     processing: true,
                                                     ajax: {
-                                                        url: "{{ route('admin.fetch.customers') }}",
+                                                        url: "{{ route('admin.fetch.products') }}",
                                                         dataType: "json",
-                                                        dataSrc: "customers"
+                                                        dataSrc: "products"
                                                     },
                                                     columns: [{
                                                             data: "id"
                                                         },
                                                         {
-                                                            data: "customer_name"
+                                                            data: "product_name"
                                                         },
                                                         {
-                                                            data: "customer_email"
+                                                            data: "product_sku"
                                                         },
                                                         {
-                                                            data: "gst_no"
+                                                            data: "product_price"
                                                         },
                                                         {
-                                                            data: "place"
-                                                        },
-                                                        {
-                                                            data: "state_code"
-                                                        },
-                                                        {
-                                                            data: "transport_no"
-                                                        },
-                                                        {
-                                                            data: "transport_gst_tin_no"
-                                                        },
-                                                        {
-                                                            data: "parcel"
+                                                            data: "product_stock"
                                                         },
                                                         {
                                                             data: null,
                                                             render: function(data, type, row) {
                                                                 return `<div>
-                                                                    <a href="/admin/customers/edit/${row.id}" class="btn btn-sm btn-icon item-edit">
+                                                                    <a href="/admin/products/edit/${row.id}" class="btn btn-sm btn-icon item-edit">
                                                                         <i class="text-primary ti ti-pencil"></i>
                                                                     </a>
                                                                     <a class="btn btn-sm btn-icon item-delete" href="javascript:void(0)" data-id="${row.id}">
@@ -144,8 +128,7 @@
                                                             }).then((result) => {
                                                                 if (result.isConfirmed) {
                                                                     $.ajax({
-                                                                        url: '{{ route('admin.customers.delete', ':id') }}'
-                                                                            .replace(':id', id),
+                                                                        url: '{{ route('admin.products.delete', ':id') }}'.replace(':id', id),
                                                                         method: 'GET',
                                                                         data: {
                                                                             _token: '{{ csrf_token() }}'
@@ -154,28 +137,14 @@
                                                                             Swal.fire({
                                                                                 icon: 'success',
                                                                                 title: 'Deleted!',
-                                                                                text: 'The Customer has been deleted.',
+                                                                                text: 'The Product has been deleted.',
                                                                                 confirmButtonText: 'OK'
                                                                             }).then(() => {
-                                                                                $('#example')
-                                                                                    .DataTable()
-                                                                                    .row($(event
-                                                                                            .target
-                                                                                        )
-                                                                                        .closest(
-                                                                                            'tr'
-                                                                                        )
-                                                                                    )
-                                                                                    .remove()
-                                                                                    .draw();
+                                                                                $('#example').DataTable().row($(event.target).closest('tr')).remove().draw();
                                                                             });
                                                                         },
-                                                                        error: function(xhr, status,
-                                                                            error) {
-                                                                            console.error(
-                                                                                'Error deleting post:',
-                                                                                xhr, status,
-                                                                                error);
+                                                                        error: function(xhr, status, error) {
+                                                                            console.error('Error deleting post:', xhr, status, error);
                                                                             Swal.fire({
                                                                                 icon: 'error',
                                                                                 title: 'Error!',

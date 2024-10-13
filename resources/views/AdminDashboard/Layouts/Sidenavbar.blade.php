@@ -46,6 +46,12 @@
                 <div data-i18n="Sales">Sales</div>
             </a>
         </li>
+        <li class="menu-item {{ Request::is('admin/products','admin/products/add','admin/products/edit/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.products') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-components"></i>
+                <div data-i18n="Products">Products</div>
+            </a>
+        </li>
         <li class="menu-item {{ Request::is('admin/cache') ? 'active' : '' }}">
             <a href="{{ route('cache') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-settings"></i>

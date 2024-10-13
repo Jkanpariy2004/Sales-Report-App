@@ -143,7 +143,7 @@
                 style="text-align: center; width:264pt; border-top-style:solid; border-top-width:1pt; border-left-style:solid; border-left-width:1pt; border-bottom-style:solid; border-bottom-width:1pt; border-right-style:solid; border-right-width:1pt">
                 <div style="margin: 10px; font-size: 17px;">
                     @foreach ($sale->items as $item)
-                        {{ $item->item_name }}&nbsp;({{ $item->hsn_code }})<br>
+                        {{ $item->product_name }}&nbsp;({{ $item->hsn_code }})<br>
                     @endforeach
                 </div>
             </td>

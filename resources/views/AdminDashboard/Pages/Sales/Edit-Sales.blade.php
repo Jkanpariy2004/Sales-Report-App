@@ -178,11 +178,17 @@
                                                                 </td>
                                                                 <td>
                                                                     <span
-                                                                        class="view-mode">{{ $SalesItem->item_name }}</span>
-                                                                    <input type="text" class="form-control edit-mode"
-                                                                        name="item_name"
-                                                                        value="{{ $SalesItem->item_name }}"
-                                                                        style="display:none;" />
+                                                                        class="view-mode">{{ $SalesItem->product_name }}</span>
+                                                                    <select class="form-select edit-mode" name="item_name"
+                                                                        style="display: none;">
+                                                                        <option value="" hidden>Select Item</option>
+                                                                        @foreach ($products as $product)
+                                                                            <option value="{{ $product->id }}"
+                                                                                {{ $SalesItem->item_name == $product->id ? 'selected' : '' }}>
+                                                                                {{ $product->product_name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </td>
                                                                 <td>
                                                                     <span
@@ -348,17 +354,23 @@
         function saveItem(id, element) {
             const row = element.closest('tr');
             const data = {
-                unit: row.querySelector('select[name="unit"]').value,
-                quantity: row.querySelector('input[name="quantity"]').value,
-                item_name: row.querySelector('input[name="item_name"]').value,
-                item_detail: row.querySelector('input[name="item_detail"]').value,
-                price: row.querySelector('input[name="price"]').value,
-                hsn_code: row.querySelector('input[name="hsn_code"]').value,
-                tax_type: row.querySelector('select[name="tax_type"]').value,
-                tax: row.querySelector('input[name="tax"]').value,
-                total: row.querySelector('input[name="total"]').value,
+                unit: row.querySelector('select[name="unit"]') ? row.querySelector('select[name="unit"]').value : '',
+                quantity: row.querySelector('input[name="quantity"]') ? row.querySelector('input[name="quantity"]')
+                    .value : '',
+                item_name: row.querySelector('select[name="item_name"]') ? row.querySelector('select[name="item_name"]')
+                    .value : '',
+                item_detail: row.querySelector('input[name="item_detail"]') ? row.querySelector(
+                    'input[name="item_detail"]').value : '',
+                price: row.querySelector('input[name="price"]') ? row.querySelector('input[name="price"]').value : '',
+                hsn_code: row.querySelector('input[name="hsn_code"]') ? row.querySelector('input[name="hsn_code"]')
+                    .value : '',
+                tax_type: row.querySelector('select[name="tax_type"]') ? row.querySelector('select[name="tax_type"]')
+                    .value : '',
+                tax: row.querySelector('input[name="tax"]') ? row.querySelector('input[name="tax"]').value : '',
+                total: row.querySelector('input[name="total"]') ? row.querySelector('input[name="total"]').value : '',
                 _token: '{{ csrf_token() }}'
             };
+
 
             $.ajax({
                 url: '/admin/sales/update-sales-item/' + id,
@@ -451,6 +463,7 @@
             });
 
             $('#SalesForm').on('submit', function(e) {
+                // console.log('ccc');
                 e.preventDefault();
 
                 var isValid = true;
@@ -472,8 +485,6 @@
                                 timer: 3000,
                                 timerProgressBar: true,
                                 confirmButtonText: 'OK'
-                            }).then(function() {
-                                window.location.href = '{{ route('admin.sales') }}';
                             });
                         },
                         error: function(xhr) {
@@ -542,7 +553,14 @@
                             </select>
                         </td>
                         <td><input type="number" class="form-control" name="quantity[]" placeholder="Enter Quantity"></td>
-                        <td><input type="text" class="form-control" name="item_name[]" placeholder="Enter Item Name"></td>
+                        <td>
+                            <select class="form-select" name="item_name[]">
+                                <option value="" hidden>Select Item</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->product_name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
                         <td><input type="text" class="form-control" name="item_details[]" placeholder="Enter Item Details"></td>
                         <td><input type="number" class="form-control" name="price[]" placeholder="Enter Item Price"></td>
                         <td><input type="text" class="form-control" name="hsn_code[]" placeholder="Enter Item HSN Code"></td>

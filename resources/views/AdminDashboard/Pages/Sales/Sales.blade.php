@@ -29,7 +29,7 @@
                                         <div class="w-50 text-end">
                                             <a href="{{ route('admin.add.sales') }}" class="btn btn-primary">
                                                 <i class="ti ti-plus me-sm-1"></i>
-                                                <span class="mt-1">Add Sale Report</span>
+                                                <span class="mt-1">Create Bill</span>
                                             </a>
                                         </div>
                                     </div>
@@ -181,6 +181,10 @@
                                                                                                     <td>${row.bill_no}</td>
                                                                                                 </tr>
                                                                                                 <tr>
+                                                                                                    <th class="fw-bold">Customer Email:</th>
+                                                                                                    <td>${row.customer_email}</td>
+                                                                                                </tr>
+                                                                                                <tr>
                                                                                                     <th class="fw-bold">Customer GST No.:</th>
                                                                                                     <td>${row.gst_no}</td>
                                                                                                 </tr>
@@ -217,6 +221,10 @@
                                                                                                 <tr>
                                                                                                     <th class="fw-bold">Parcel:</th>
                                                                                                     <td>${row.parcel}</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <th></th>
+                                                                                                    <th></th>
                                                                                                 </tr>
                                                                                             </table>
                                                                                         </div>

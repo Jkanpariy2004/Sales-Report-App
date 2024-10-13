@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CacheClearController;
 use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Login\LoginController;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\SalesController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,16 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{id}','edit')->name('admin.edit.customers');
             Route::post('/update/{id}','update')->name('update.customers');
             Route::get('/delete/{id}','delete')->name('admin.customers.delete');
+        });
+
+        Route::prefix('products')->controller(ProductsController::class)->group(function(){
+            Route::get('/','index')->name('admin.products');
+            Route::get('/fetch','fetch')->name('admin.fetch.products');
+            Route::get('/add','add')->name('admin.add.products');
+            Route::post('/insert','insert')->name('insert.products');
+            Route::get('/edit/{id}','edit')->name('admin.edit.products');
+            Route::post('/update/{id}','update')->name('update.products');
+            Route::get('/delete/{id}','delete')->name('admin.products.delete');
         });
 
         Route::prefix('cache')->controller(CacheClearController::class)->group(function () {
