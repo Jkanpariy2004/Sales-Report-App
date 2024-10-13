@@ -68,7 +68,7 @@
                                                                 <td>${index + 1}</td>
                                                                 <td>${item.unit}</td>
                                                                 <td>${item.quantity}</td>
-                                                                <td>${item.item_name}</td>
+                                                                <td>${item.product_name}</td>
                                                                 <td>${item.item_detail}</td>
                                                                 <td>${item.price}</td>
                                                                 <td>${item.hsn_code}</td>
