@@ -1,6 +1,6 @@
 @extends('AdminDashboard.Particals.app')
 
-@section('title', 'Sales Page')
+@section('title', 'Purchase Page')
 
 @section('content')
     <div class="layout-wrapper layout-content-navbar">
@@ -16,32 +16,29 @@
 
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="container-xxl flex-grow-1 container-p-y">
-                            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Sale
+                            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Purchase
                             </h4>
 
                             <div class="card p-4">
-                                <div class="card-datatable table-responsive pt-0">
-                                    <div class="d-flex mb-3">
-                                        <div class="w-50 text-start">
-                                            <h3>Sale Report Data</h3>
-                                        </div>
-
-                                        <div class="w-50 text-end">
-                                            <a href="{{ route('admin.add.sales') }}" class="btn btn-primary">
-                                                <i class="ti ti-plus me-sm-1"></i>
-                                                <span class="mt-1">Add Sale</span>
-                                            </a>
-                                        </div>
+                                <div class="d-flex mb-3">
+                                    <div class="w-50 text-start">
+                                        <h3>Purchase Data</h3>
                                     </div>
+
+                                    <div class="w-50 text-end">
+                                        <a href="{{ route('admin.add.purchase') }}" class="btn btn-primary">
+                                            <i class="ti ti-plus me-sm-1"></i>
+                                            <span class="mt-1">Add Purchase</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-datatable table-responsive pt-0">
                                     <table class="table" id="example">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No.</th>
-                                                <th class="text-center">Customer Name</th>
-                                                <th class="text-center">Bill No.</th>
-                                                <th class="text-center">Bill Date</th>
-                                                <th class="text-center">GST No.</th>
-                                                <th class="text-center">Parcel</th>
+                                                <th class="text-center">Supplier Name</th>
+                                                <th class="text-center">Grand Total</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -53,13 +50,15 @@
                                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                     <script>
                                         $('#tbody_data').delegate('.btn-view-details', 'click', function() {
+                                            console.log('dddd');
+
                                             var saleId = $(this).data('id');
                                             var $tableBody = $(`#sales-item-table-${saleId} tbody`);
 
                                             $tableBody.empty();
 
                                             $.ajax({
-                                                url: `/admin/sales/${saleId}/items`,
+                                                url: `/admin/purchase/${saleId}/items`,
                                                 method: 'GET',
                                                 success: function(response) {
                                                     response.forEach(function(item, index) {
@@ -69,8 +68,8 @@
                                                                 <td>${item.unit}</td>
                                                                 <td>${item.quantity}</td>
                                                                 <td>${item.item_name}</td>
-                                                                <td>${item.item_detail}</td>
-                                                                <td>${item.price}</td>
+                                                                <td>${item.item_details}</td>
+                                                                <td>${item.cost}</td>
                                                                 <td>${item.hsn_code}</td>
                                                                 <td>${item.tax_type}</td>
                                                                 <td>${item.tax}</td>
@@ -97,6 +96,7 @@
                                                 }
                                             });
                                         });
+
                                         document.addEventListener('DOMContentLoaded', function() {
                                             @if (session('success'))
                                                 Swal.fire({
@@ -120,81 +120,56 @@
                                                 $('#example').DataTable({
                                                     processing: true,
                                                     ajax: {
-                                                        url: "{{ route('admin.fetch.sales') }}",
+                                                        url: "{{ route('fetch.purchase') }}",
                                                         dataType: "json",
-                                                        dataSrc: "sales"
+                                                        dataSrc: "purchases"
                                                     },
                                                     columns: [{
                                                             data: "id"
                                                         },
                                                         {
-                                                            data: "customer_name"
+                                                            data: "name"
                                                         },
                                                         {
-                                                            data: "bill_no"
-                                                        },
-                                                        {
-                                                            data: "bill_date"
-                                                        },
-                                                        {
-                                                            data: "gst_no"
-                                                        },
-                                                        {
-                                                            data: "parcel"
+                                                            data: "grand_total"
                                                         },
                                                         {
                                                             data: null,
                                                             render: function(data, type, row) {
                                                                 return `<div>
-                                                                    <a href="/admin/sales/edit/${row.id}" class="btn btn-sm btn-icon item-edit">
-                                                                        <i class="text-primary ti ti-pencil"></i>
-                                                                    </a>
-                                                                    <a class="btn btn-sm btn-icon item-delete" href="javascript:void(0)" data-id="${row.id}">
-                                                                        <i class="text-danger ti ti-trash"></i>
-                                                                    </a>
                                                                     <a href="javascript:void(0)" class="btn-view-details" data-id="${row.id}" data-bs-toggle="modal" data-bs-target="#exampleModal${row.id}">
                                                                         <i class="text-success ti ti-eye mx-2 ti-sm"></i>
                                                                     </a>
-                                                                    <a href="/admin/sales/invoice/${row.id}" target="_blank" class="btn btn-sm btn-icon item-print">
-                                                                        <i class="text-info ti ti-printer"></i>
+
+                                                                    <a href="/admin/purchase/edit/${row.id}" class="btn btn-sm btn-icon item-edit">
+                                                                        <i class="text-primary ti ti-pencil"></i>
                                                                     </a>
-                                                                    <a class="btn btn-sm btn-icon item-mail" href="#" data-email="${row.customer_email}">
-                                                                        <i class="text-primary ti ti-mail"></i>
+
+                                                                    <a class="btn btn-sm btn-icon item-delete" href="javascript:void(0)" data-id="${row.id}">
+                                                                        <i class="text-danger ti ti-trash"></i>
                                                                     </a>
 
                                                                     <div class="modal fade" id="exampleModal${row.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog modal-xl">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header">
-                                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">${row.bill_no}</h1>
+                                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">${row.name}</h1>
                                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                 </div>
                                                                                 <div class="modal-body text-start" id="modal-body-content">
                                                                                     <div class="sales-data">
                                                                                         <div class="border-bottom">
-                                                                                            <h3 class="mb-1">Sales Data</h3>
+                                                                                            <h3 class="mb-1">Purchase Data</h3>
                                                                                         </div>
                                                                                         <div class="d-flex">
                                                                                             <table class="w-50">
                                                                                                 <tr>
-                                                                                                    <th class="fw-bold">Bill No.:</th>
-                                                                                                    <td>${row.bill_no}</td>
+                                                                                                    <th class="fw-bold">Supplier Name:</th>
+                                                                                                    <td>${row.name}</td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <th class="fw-bold">Customer Email:</th>
-                                                                                                    <td>${row.customer_email}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th class="fw-bold">Customer GST No.:</th>
+                                                                                                    <th class="fw-bold">Supplier GST No.:</th>
                                                                                                     <td>${row.gst_no}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th class="fw-bold">State Code:</th>
-                                                                                                    <td>${row.state_code}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th class="fw-bold">Transport GST TIN No.:</th>
-                                                                                                    <td>${row.transport_gst_tin_no}</td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <th class="fw-bold">Grand Total:</th>
@@ -203,24 +178,12 @@
                                                                                             </table>
                                                                                             <table class="w-50">
                                                                                                 <tr>
-                                                                                                    <th class="fw-bold">Customer Name:</th>
-                                                                                                    <td>${row.customer_name}</td>
+                                                                                                    <th class="fw-bold">Supplier Email:</th>
+                                                                                                    <td>${row.email}</td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <th class="fw-bold">Bill Date:</th>
-                                                                                                    <td>${row.bill_date}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th class="fw-bold">Place:</th>
-                                                                                                    <td>${row.place}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th class="fw-bold">Transport No.:</th>
-                                                                                                    <td>${row.transport_no}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th class="fw-bold">Parcel:</th>
-                                                                                                    <td>${row.parcel}</td>
+                                                                                                    <th class="fw-bold">Address:</th>
+                                                                                                    <td>${row.address}</td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <th></th>
@@ -231,7 +194,7 @@
                                                                                     </div>
                                                                                     <div class="customers-data mt-5">
                                                                                         <div class="border-bottom">
-                                                                                            <h3 class="mb-1">Sales Item Data</h3>
+                                                                                            <h3 class="mb-1">Purchase Items Data</h3>
                                                                                         </div>
                                                                                         <table class="table table-bordered mt-3" id="sales-item-table-${row.id}">
                                                                                             <thead>
@@ -241,7 +204,7 @@
                                                                                                     <th class="fw-bold">Quantity</th>
                                                                                                     <th class="fw-bold">Item Name</th>
                                                                                                     <th class="fw-bold">Item Details</th>
-                                                                                                    <th class="fw-bold">Price</th>
+                                                                                                    <th class="fw-bold">Cost</th>
                                                                                                     <th class="fw-bold">HSN Code</th>
                                                                                                     <th class="fw-bold">Tax Type</th>
                                                                                                     <th class="fw-bold">Tax(%)</th>
@@ -264,63 +227,12 @@
                                                             }
                                                         }
                                                     ],
-                                                    lengthMenu: [7, 10, 25, 50, 75, 100],
+                                                    lengthMenu: [5, 10, 25, 50, 75, 100],
                                                     responsive: true,
                                                     paging: true,
                                                     searching: true,
                                                     ordering: true,
                                                     drawCallback: function(settings) {
-                                                        $('.item-mail').off('click').on('click', function(event) {
-                                                            event.preventDefault();
-                                                            const customer_email = $(this).data('email');
-                                                            const saleId = $(this).closest('div').find('.btn-view-details').data('id');
-
-                                                            Swal.fire({
-                                                                title: 'Send Invoice',
-                                                                text: `Send an invoice to ${customer_email}?`,
-                                                                icon: 'info',
-                                                                showCancelButton: true,
-                                                                confirmButtonText: 'Yes, send it!'
-                                                            }).then((result) => {
-                                                                if (result.isConfirmed) {
-                                                                    Swal.fire({
-                                                                        title: 'Processing...',
-                                                                        text: 'Generating invoice PDF and sending email, please wait...',
-                                                                        allowOutsideClick: false,
-                                                                        didOpen: () => {
-                                                                            Swal.showLoading();
-                                                                        }
-                                                                    });
-
-                                                                    $.ajax({
-                                                                        url: '/admin/sales/send-invoice-pdf',
-                                                                        method: 'POST',
-                                                                        data: {
-                                                                            email: customer_email,
-                                                                            sale_id: saleId,
-                                                                            _token: '{{ csrf_token() }}'
-                                                                        },
-                                                                        success: function(response) {
-                                                                            Swal.fire({
-                                                                                icon: 'success',
-                                                                                title: 'Sent!',
-                                                                                text: 'Invoice email has been sent with the PDF attachment.',
-                                                                                confirmButtonText: 'OK'
-                                                                            });
-                                                                        },
-                                                                        error: function(xhr, status, error) {
-                                                                            Swal.fire({
-                                                                                icon: 'error',
-                                                                                title: 'Error!',
-                                                                                text: 'An error occurred while sending the invoice.',
-                                                                                confirmButtonText: 'OK'
-                                                                            });
-                                                                        }
-                                                                    });
-                                                                }
-                                                            });
-                                                        });
-
                                                         $('.item-delete').off('click').on('click', function(event) {
                                                             event.preventDefault();
                                                             const id = $(this).data('id');
@@ -336,7 +248,7 @@
                                                             }).then((result) => {
                                                                 if (result.isConfirmed) {
                                                                     $.ajax({
-                                                                        url: '{{ route('admin.sales.delete', ':id') }}'
+                                                                        url: '{{ route('admin.purchase.producta.delete', ':id') }}'
                                                                             .replace(':id', id),
                                                                         method: 'GET',
                                                                         data: {
@@ -346,7 +258,8 @@
                                                                             Swal.fire({
                                                                                 icon: 'success',
                                                                                 title: 'Deleted!',
-                                                                                text: 'The Customer has been deleted.',
+                                                                                text: response
+                                                                                    .message,
                                                                                 confirmButtonText: 'OK'
                                                                             }).then(() => {
                                                                                 $('#example')

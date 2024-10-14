@@ -315,7 +315,7 @@
                         </td>
                         <td><input type="number" class="form-control" name="quantity[]" placeholder="Enter Quantity"></td>
                         <td>
-                            <select class="form-select" name="item_name[]">
+                            <select class="form-select" name="item_name[]" onchange="fetchItemPrice(this)">
                                 <option value="" hidden>Select Item</option>
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}">{{ $product->product_name }}</option>
@@ -323,7 +323,7 @@
                             </select>
                         </td>
                         <td><input type="text" class="form-control" name="item_details[]" placeholder="Enter Item Details"></td>
-                        <td><input type="number" class="form-control" name="price[]" placeholder="Enter Item Price"></td>
+                        <td><input type="number" class="form-control" name="price[]" placeholder="Enter Item Price" readonly></td>
                         <td><input type="text" class="form-control" name="hsn_code[]" placeholder="Enter Item HSN Code"></td>
                         <td>
                             <select class="form-select" name="tax_type[]">
@@ -362,6 +362,7 @@
                         $('#transport_no').val(response.transport_no);
                         $('#state_code').val(response.state_code);
                         $('#transport_gst_tin_no').val(response.transport_gst_tin_no);
+                        $('#parcel').val(response.parcel);
                     },
                     error: function(xhr) {
                         console.error('Error fetching customer details:', xhr);
@@ -373,6 +374,27 @@
                 $('#transport_no').val('');
                 $('#state_code').val('');
                 $('#transport_gst_tin_no').val('');
+                $('#parcel').val('');
+            }
+        }
+
+        function fetchItemPrice(selectElement) {
+            const itemId = selectElement.value;
+            const priceInput = $(selectElement).closest('tr').find('input[name="price[]"]');
+
+            if (itemId) {
+                $.ajax({
+                    url: '{{ route('item.price', '') }}/' + itemId,
+                    type: 'GET',
+                    success: function(response) {
+                        priceInput.val(response.price);
+                    },
+                    error: function(xhr) {
+                        console.error('Error fetching item price:', xhr);
+                    }
+                });
+            } else {
+                priceInput.val('');
             }
         }
     </script>

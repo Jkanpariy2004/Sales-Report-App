@@ -40,16 +40,28 @@
                 <div data-i18n="Customer">Customer</div>
             </a>
         </li>
-        <li class="menu-item {{ Request::is('admin/sales','admin/sales/add','admin/sales/edit/*') ? 'active' : '' }}">
-            <a href="{{ route('admin.sales') }}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-id"></i>
-                <div data-i18n="Sales">Sales</div>
+        <li class="menu-item {{ Request::is('admin/supplier','admin/supplier/add','admin/supplier/edit/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.supplier') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div data-i18n="Supplier">Supplier</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('admin/products','admin/products/add','admin/products/edit/*') ? 'active' : '' }}">
             <a href="{{ route('admin.products') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-components"></i>
                 <div data-i18n="Products">Products</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('admin/sales','admin/sales/add','admin/sales/edit/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.sales') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-id"></i>
+                <div data-i18n="Sales">Sales</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('admin/purchase','admin/purchase/add','admin/purchase/edit/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.purchase') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-file-dollar"></i>
+                <div data-i18n="Purchase">Purchase</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('admin/cache') ? 'active' : '' }}">

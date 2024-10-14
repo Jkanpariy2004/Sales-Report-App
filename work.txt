@@ -317,3 +317,20 @@ Date:12/10/2024
 
 4.Next Steps/Plan for Tomorrow:
  ->
+
+Date:14/10/2024
+1.Tasks Completed:
+    ==>Sales Report:-
+        ->Create Supplier Module With Crud.
+        ->Create Purchase Module With Crud.
+        ->Create Purchase Products Module With Crud.
+        ->Purchase Product Apply in Purchase Module..
+
+2.Ongoing Tasks:
+  ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->No challenge faced today.
+
+4.Next Steps/Plan for Tomorrow:
+ ->

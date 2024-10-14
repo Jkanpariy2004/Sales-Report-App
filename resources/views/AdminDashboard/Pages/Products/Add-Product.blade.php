@@ -1,6 +1,6 @@
 @extends('AdminDashboard.Particals.app')
 
-@section('title', 'Customer Page')
+@section('title', 'Products Page')
 
 @section('content')
     <div class="layout-wrapper layout-content-navbar">

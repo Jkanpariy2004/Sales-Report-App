@@ -23,15 +23,10 @@ class SalesController extends Controller
 
     public function fetch()
     {
-        $sales = Sales::with(['items' => function ($query) {
-            $query->leftJoin('product', 'sale_item.item_name', '=', 'product.id')
-                ->select('sale_item.*', 'product.product_name');
-        }])
-            ->join('customers', 'sale.customer_id', '=', 'customers.id')
-            ->join('sale_item', 'sale.id', '=', 'sale_item.sale_id')
-            ->select('sale.*', 'customers.customer_name as customer_name', 'customers.customer_email as customer_email')
-            ->groupBy('sale.id')
-            ->get();
+        $sales = DB::table('sale')
+        ->leftJoin('customers', 'sale.customer_id', '=', 'customers.id')
+        ->select('sale.*', 'customers.customer_name', 'customers.customer_email')
+        ->get();
 
         return response([
             'sales' => $sales,
@@ -64,10 +59,22 @@ class SalesController extends Controller
                 'transport_no' => $customer->transport_no,
                 'state_code' => $customer->state_code,
                 'transport_gst_tin_no' => $customer->transport_gst_tin_no,
+                'parcel' => $customer->parcel,
             ]);
         }
 
         return response()->json(['error' => 'Customer not found'], 404);
+    }
+
+    public function getItemPrice($id)
+    {
+        $product = Products::find($id);
+
+        if ($product) {
+            return response()->json(['price' => $product->product_price]);
+        }
+
+        return response()->json(['price' => 0], 404);
     }
 
     public function insert(Request $request)
@@ -125,7 +132,6 @@ class SalesController extends Controller
             ]);
 
             $product = Products::where('id', $request->item_name[$key])->first();
-            // $product = Products::where('item_name', $request->item_name[$key])->first();
 
             if ($product) {
                 $product->product_stock -= $request->quantity[$key];
@@ -198,7 +204,6 @@ class SalesController extends Controller
                 ]);
 
                 $product = Products::where('id', $request->item_name[$key])->first();
-                // $product = Products::where('item_name', $request->item_name[$key])->first();
 
                 if ($product) {
                     $product->product_stock -= $request->quantity[$key];
