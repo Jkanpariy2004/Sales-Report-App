@@ -23,8 +23,8 @@
                                     <form id="SalesForm">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-6"></div>
-                                            <div class="col-6">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="customer" class="form-label">Select Customer</label>
                                                     <div class="dropdown">
@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="bill_no" class="form-label">Bill No.</label>
                                                     <input type="text" class="form-control" name="bill_no" id="bill_no"
@@ -52,7 +52,7 @@
                                                     <div class="invalid-feedback" id="bill_no-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="bill_date" class="form-label">Bill Date</label>
                                                     <input type="text" class="form-control" name="bill_date"
@@ -63,7 +63,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="gst_no" class="form-label">GST No.</label>
                                                     <input type="text" class="form-control" name="gst_no" id="gst_no"
@@ -71,7 +71,7 @@
                                                     <div class="invalid-feedback" id="gst_no-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="place" class="form-label">Place</label>
                                                     <textarea type="text" class="form-control" name="place" id="place" placeholder="Enter Place"></textarea>
@@ -81,7 +81,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="state_code" class="form-label">State Code</label>
                                                     <input type="text" class="form-control" name="state_code"
@@ -89,7 +89,7 @@
                                                     <div class="invalid-feedback" id="state_code-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="transport_no" class="form-label">Transport No.</label>
                                                     <input type="text" class="form-control" name="transport_no"
@@ -100,7 +100,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="transport_gst_tin_no" class="form-label">Tranport GST TIN
                                                         No.</label>
@@ -110,7 +110,7 @@
                                                     <div class="invalid-feedback" id="transport_gst_tin_no-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="parcel" class="form-label">Parcel</label>
                                                     <input type="text" class="form-control" name="parcel"
@@ -121,7 +121,7 @@
                                         </div>
 
                                         <div class="col-md-12">
-                                            <div class="card mb-4">
+                                            <div class="card mb-4 p-1">
                                                 <h5 class="card-header">Sales Items</h5>
                                                 <div style="overflow-x: auto">
                                                     <table class="table table-bordered" id="salesReportTable">
@@ -315,7 +315,7 @@
                         </td>
                         <td><input type="number" class="form-control" name="quantity[]" placeholder="Enter Quantity"></td>
                         <td>
-                            <select class="form-select" name="item_name[]" onchange="fetchItemPrice(this)">
+                            <select class="form-select" name="item_name[]">
                                 <option value="" hidden>Select Item</option>
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}">{{ $product->product_name }}</option>
@@ -323,7 +323,7 @@
                             </select>
                         </td>
                         <td><input type="text" class="form-control" name="item_details[]" placeholder="Enter Item Details"></td>
-                        <td><input type="number" class="form-control" name="price[]" placeholder="Enter Item Price" readonly></td>
+                        <td><input type="number" class="form-control" name="price[]" placeholder="Enter Item Price"></td>
                         <td><input type="text" class="form-control" name="hsn_code[]" placeholder="Enter Item HSN Code"></td>
                         <td>
                             <select class="form-select" name="tax_type[]">
@@ -375,26 +375,6 @@
                 $('#state_code').val('');
                 $('#transport_gst_tin_no').val('');
                 $('#parcel').val('');
-            }
-        }
-
-        function fetchItemPrice(selectElement) {
-            const itemId = selectElement.value;
-            const priceInput = $(selectElement).closest('tr').find('input[name="price[]"]');
-
-            if (itemId) {
-                $.ajax({
-                    url: '{{ route('item.price', '') }}/' + itemId,
-                    type: 'GET',
-                    success: function(response) {
-                        priceInput.val(response.price);
-                    },
-                    error: function(xhr) {
-                        console.error('Error fetching item price:', xhr);
-                    }
-                });
-            } else {
-                priceInput.val('');
             }
         }
     </script>

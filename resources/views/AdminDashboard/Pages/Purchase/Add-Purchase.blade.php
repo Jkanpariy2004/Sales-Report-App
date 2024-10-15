@@ -23,8 +23,8 @@
                                     <form id="SupplierForm">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-6"></div>
-                                            <div class="col-6">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="supplier" class="form-label">Select Supplier</label>
                                                     <div class="dropdown">
@@ -143,7 +143,7 @@
 
                 var isValid = true;
 
-                
+
 
                 if (isValid) {
                     var formData = new FormData(this);

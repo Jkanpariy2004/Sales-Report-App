@@ -23,7 +23,7 @@
                                     <form id="CompanyForm">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="customer_name" class="form-label">Customer Name</label>
                                                     <input type="text" class="form-control" name="customer_name" id="customer_name"
@@ -31,7 +31,7 @@
                                                     <div class="invalid-feedback" id="customer_name-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="customer_email" class="form-label">Customer Email</label>
                                                     <input type="text" class="form-control" name="customer_email" id="customer_email"
@@ -42,7 +42,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="gst_no" class="form-label">GST No.</label>
                                                     <input type="text" class="form-control" name="gst_no" id="gst_no"
@@ -50,7 +50,7 @@
                                                     <div class="invalid-feedback" id="gst_no-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="place" class="form-label">Place</label>
                                                     <textarea type="text" class="form-control" name="place" id="place"
@@ -61,7 +61,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="state_code" class="form-label">State Code</label>
                                                     <input type="text" class="form-control" name="state_code" id="state_code"
@@ -69,7 +69,7 @@
                                                     <div class="invalid-feedback" id="state_code-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="transport_no" class="form-label">Transport No.</label>
                                                     <input type="text" class="form-control" name="transport_no" id="transport_no"
@@ -80,14 +80,14 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="transport_gst_tin_no" class="form-label">Transport GST TIN No.</label>
                                                     <input type="text" class="form-control" name="transport_gst_tin_no" id="transport_gst_tin_no" placeholder="Enter GST TIN No." value="{{ $new->transport_gst_tin_no }}" />
                                                     <div class="invalid-feedback" id="transport_gst_tin_no-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="parcel" class="form-label">Parcel</label>
                                                     <input type="text" class="form-control" name="parcel" id="parcel"

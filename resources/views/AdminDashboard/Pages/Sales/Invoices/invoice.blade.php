@@ -275,7 +275,7 @@
         <tr style="height:90pt;">
             <td style="padding:3px; 528pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                 colspan="6">
-                <div style="width:100%;">
+                <div style="width:100%; display:flex;">
                     <div style="width: 33%; display: inline-block; margin-top: 0px !important;">
                         <h4>Terms & Conditions :</h4>
                         <ul style="margin-left: 30px; margin-top: 5px; font-size: 15px;">

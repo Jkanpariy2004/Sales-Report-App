@@ -53,3 +53,11 @@
 <!-- Page JS -->
 <script src="/../../assets/js/tables-datatables-basic.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Page JS -->
+<script src="../../assets/js/app-calendar-events.js"></script>
+<script src="../../assets/js/app-calendar.js"></script>
+<!-- Vendors JS -->
+<script src="../../assets/vendor/libs/fullcalendar/fullcalendar.js"></script>
+<script src="../../assets/vendor/libs/select2/select2.js"></script>
+<script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
+<script src="../../assets/vendor/libs/moment/moment.js"></script>

@@ -275,8 +275,8 @@
         <tr style="height:90pt;">
             <td style="padding:3px; 528pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                 colspan="6">
-                <div style="width:100%; margin-top: 30px;">
-                    <div style="width: 33%; display: inline-block; margin-top: 0px !important;">
+                <div style="width:100%; margin-top: 30px; display: flex;">
+                    <div style="width: 33%; display: inline-block; margin-top: 0px !important;"><br>
                         <h4>Terms & Conditions :</h4>
                         <ul style="margin-left: 30px; margin-top: 5px; font-size: 15px;">
                             <li>Interest at 24% p.a. will be charged for late payments.</li>

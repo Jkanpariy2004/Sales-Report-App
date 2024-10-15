@@ -51,6 +51,11 @@
 
     <script src="/../../assets/vendor/js/template-customizer.js"></script>
     <script src="/../../assets/js/config.js"></script>
+
+    <link rel="stylesheet" href="../../assets/vendor/libs/fullcalendar/fullcalendar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/quill/editor.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
 </head>
 
 <body>

@@ -23,8 +23,8 @@
                                     <form id="SupplierForm">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-6"></div>
-                                            <div class="col-6">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="supplier" class="form-label">Select Supplier</label>
                                                     <div class="dropdown">
@@ -102,7 +102,7 @@
                                                                         <span
                                                                             class="view-mode">{{ $SalesItem->product_name }}</span>
                                                                         <select class="form-select edit-mode"
-                                                                            name="item_name" style="display: none;" onchange="fetchItemCost(this)">
+                                                                            name="item_name" style="display: none;" onchange="fetchItemCost1(this)">
                                                                             <option value="" hidden>Select Item
                                                                             </option>
                                                                             @foreach ($products as $product)
@@ -126,7 +126,7 @@
                                                                             class="view-mode">{{ $SalesItem->cost }}</span>
                                                                         <input type="number" class="form-control edit-mode"
                                                                             name="cost" value="{{ $SalesItem->cost }}" id="cost"
-                                                                            style="display:none;" />
+                                                                            style="display:none;" readonly />
                                                                     </td>
                                                                     <td>
                                                                         <span
@@ -165,7 +165,7 @@
                                                                         <input type="number" class="form-control edit-mode"
                                                                             name="total" value="{{ $SalesItem->total }}"
                                                                             id="OldTotal" style="display:none;"
-                                                                            onchange="calculateGrandTotal()" />
+                                                                            onchange="calculateGrandTotal()" readonly />
                                                                     </td>
                                                                     <td class="action-buttons">
                                                                         <a href="javascript:void(0);" class="edit-item"
@@ -526,6 +526,26 @@
         function fetchItemCost(selectElement) {
             const itemId = selectElement.value;
             const costInput = $(selectElement).closest('tr').find('input[name="cost[]"]');
+
+            if (itemId) {
+                $.ajax({
+                    url: '{{ route('item.purchase.cost', '') }}/' + itemId,
+                    type: 'GET',
+                    success: function(response) {
+                        costInput.val(response.cost);
+                    },
+                    error: function(xhr) {
+                        console.error('Error fetching item cost:', xhr);
+                    }
+                });
+            } else {
+                costInput.val('');
+            }
+        }
+
+        function fetchItemCost1(selectElement) {
+            const itemId = selectElement.value;
+            const costInput = $(selectElement).closest('tr').find('input[name="cost"]');
 
             if (itemId) {
                 $.ajax({

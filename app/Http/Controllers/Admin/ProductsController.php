@@ -31,7 +31,6 @@ class ProductsController extends Controller
             'product_name' => 'required',
             'product_sku' => 'required',
             'product_price' => 'required',
-            'product_stock' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -42,7 +41,7 @@ class ProductsController extends Controller
         $admin->product_name = $request->product_name;
         $admin->product_sku = $request->product_sku;
         $admin->product_price = $request->product_price;
-        $admin->product_stock = $request->product_stock;
+        $admin->product_stock = '0';
 
         $admin->save();
 
@@ -62,7 +61,6 @@ class ProductsController extends Controller
             'product_name' => 'required',
             'product_sku' => 'required',
             'product_price' => 'required',
-            'product_stock' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -73,7 +71,6 @@ class ProductsController extends Controller
         $admin->product_name = $request->product_name;
         $admin->product_sku = $request->product_sku;
         $admin->product_price = $request->product_price;
-        $admin->product_stock = $request->product_stock;
 
         $admin->save();
 

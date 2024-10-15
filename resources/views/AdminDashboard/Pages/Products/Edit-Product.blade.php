@@ -23,7 +23,7 @@
                                     <form id="CompanyForm">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="product_name" class="form-label">Product Name</label>
                                                     <input type="text" class="form-control" name="product_name" id="product_name"
@@ -31,7 +31,7 @@
                                                     <div class="invalid-feedback" id="product_name-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="product_sku" class="form-label">Product SKU</label>
                                                     <input type="text" class="form-control" name="product_sku" id="product_sku"
@@ -42,20 +42,12 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="product_price" class="form-label">Product Price</label>
                                                     <input type="number" class="form-control" name="product_price" id="product_price"
                                                         placeholder="Enter Product Price" value="{{ $new->product_price }}" />
                                                     <div class="invalid-feedback" id="product_price-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="mb-3">
-                                                    <label for="product_stock" class="form-label">Stock</label>
-                                                    <input type="text" class="form-control" name="product_stock" id="product_stock"
-                                                        placeholder="Enter Stock" value="{{ $new->product_stock }}" />
-                                                    <div class="invalid-feedback" id="product_stock-error"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,13 +105,6 @@
                 if (product_price.trim() === '') {
                     $('#product_price').addClass('is-invalid');
                     $('#product_price-error').text('Product Price is required');
-                    isValid = false;
-                }
-
-                var product_stock = $('#product_stock').val();
-                if (product_stock.trim() === '') {
-                    $('#product_stock').addClass('is-invalid');
-                    $('#product_stock-error').text('Stock is required');
                     isValid = false;
                 }
 
