@@ -23,15 +23,21 @@ class SalesController extends Controller
 
     public function fetch()
     {
-        $sales = DB::table('sale')
-        ->leftJoin('customers', 'sale.customer_id', '=', 'customers.id')
-        ->select('sale.*', 'customers.customer_name', 'customers.customer_email')
-        ->get();
+        $sales = Sales::with(['items' => function ($query) {
+            $query->select('sale_item.*')
+                ->leftJoin('product', 'sale_item.item_name', '=', 'product.id')
+                ->addSelect('product.product_name');
+        }])
+            ->join('customers', 'sale.customer_id', '=', 'customers.id')
+            ->select('sale.*', 'customers.customer_name as customer_name')
+            ->get();
 
         return response([
             'sales' => $sales,
         ]);
     }
+
+
 
     public function getSalesItems($id)
     {
