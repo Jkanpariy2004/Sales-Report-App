@@ -13,21 +13,36 @@ class DailySalesController extends Controller
         return view('AdminDashboard.Pages.Daily-Sales.Daily-Sales');
     }
 
-    public function fetch($date) // Accept date as a parameter
+    public function fetch(Request $request)
     {
+        $startDate = $request->input('start');
+        $endDate = $request->input('end');
+
         $salesData = DB::table('sale')
-            ->select(DB::raw('DATE(created_at) as date, COUNT(grand_total) as total_count, SUM(grand_total) as total_grand'))
-            ->groupBy('date')
+            ->select(DB::raw('DATE(created_at) as date'), 'bill_no', DB::raw('SUM(grand_total) as total'))
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->groupBy('date', 'bill_no')
             ->orderBy('date', 'asc')
-            ->get();
+            ->get()
+            ->groupBy('date');
 
-        // Check if the requested date exists in the sales data
-        $salesForDate = $salesData->firstWhere('date', $date);
-
-        if ($salesForDate) {
-            return response()->json($salesForDate);
-        } else {
-            return response()->json(['message' => 'No sales available for the selected date.'], 404);
+        $formattedSalesData = [];
+        foreach ($salesData as $date => $bills) {
+            $dateTotal = $bills->sum('total');
+            $formattedSalesData[] = [
+                'date' => $date,
+                'total' => $dateTotal,
+                'bills' => $bills->toArray(),
+            ];
         }
+
+        $totalSum = collect($formattedSalesData)->sum('total');
+
+        return response()->json([
+            'salesData' => $formattedSalesData,
+            'totalSum' => $totalSum,
+            'dateRange' => ['start' => $startDate, 'end' => $endDate],
+        ]);
     }
+
 }

@@ -84,11 +84,6 @@
                         <div data-i18n="Daily Sales">Daily Sales</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Purchase Report">Purchase Report</div>
-                    </a>
-                </li>
             </ul>
         </li>
     </ul>

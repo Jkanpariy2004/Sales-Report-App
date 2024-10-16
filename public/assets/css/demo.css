@@ -7,6 +7,10 @@
     height: 64px;
 }
 
+.template-customizer-open-btn {
+    display: none !important;
+}
+
 .dark-style .menu .app-brand.demo {
     height: 64px;
 }
@@ -134,9 +138,9 @@
     display: none;
 }
 
-.template-customizer-open-btn {
+/* .template-customizer-open-btn {
     display: block !important;
-}
+} */
 
 .tox-tinymce {
     border: 1px solid #dbdade !important;
@@ -414,4 +418,3 @@ p {
     max-height: 500px;
     overflow-y: auto;
 }
-

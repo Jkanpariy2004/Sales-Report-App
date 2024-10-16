@@ -104,7 +104,7 @@ Route::prefix('admin')->group(function () {
 
             Route::prefix('/daily-sales')->controller(DailySalesController::class)->group(function () {
                 Route::get('/', 'index')->name('daily.sales');
-                Route::get('/sales/{date}', 'fetch');
+                Route::get('/fetch-sales', 'fetch')->name('fetch.sales');
             });
         });
     });

@@ -7,24 +7,13 @@
                 <script>
                     document.write(new Date().getFullYear());
                 </script>
-                , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="fw-semibold">Pixinvent</a>
-            </div>
-            <div>
-                <a href="https://themeforest.net/licenses/standard" class="footer-link me-4" target="_blank">License</a>
-                <a href="https://1.envato.market/pixinvent_portfolio" target="_blank" class="footer-link me-4">More
-                    Themes</a>
-
-                <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/" target="_blank"
-                    class="footer-link me-4">Documentation</a>
-
-                <a href="https://pixinvent.ticksy.com/" target="_blank"
-                    class="footer-link d-none d-sm-inline-block">Support</a>
+                , made with ❤️ by <a href="https://risingstarinfotech.com/" target="_blank" class="fw-semibold">Rising Star Infotech</a>
             </div>
         </div>
     </div>
 </footer>
 <!-- / Footer -->
-<script src="/../../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/../../assets/vendor/libs/popper/popper.js"></script>
 <script src="/../../assets/vendor/js/bootstrap.js"></script>
 <script src="/../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
@@ -53,11 +42,8 @@
 <!-- Page JS -->
 <script src="/../../assets/js/tables-datatables-basic.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Page JS -->
-<script src="../../assets/js/app-calendar-events.js"></script>
-<script src="../../assets/js/app-calendar.js"></script>
-<!-- Vendors JS -->
-<script src="../../assets/vendor/libs/fullcalendar/fullcalendar.js"></script>
-<script src="../../assets/vendor/libs/select2/select2.js"></script>
-<script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
-<script src="../../assets/vendor/libs/moment/moment.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale-all.js"></script>

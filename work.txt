@@ -346,3 +346,17 @@ Date:15/10/2024
  ->No challenge faced today.
 4.Next Steps/Plan for Tomorrow:
  ->
+
+Date:16/10/2024
+1.Tasks Completed:
+    ==>Sales Report:-
+        ->Create Daily Sales Report In Event Calender.
+
+2.Ongoing Tasks:
+   ->No Ongoing Task.
+
+3.Challenges Faced:
+ ->Daily Sales Show In Event Calender.
+
+4.Next Steps/Plan for Tomorrow:
+ ->
